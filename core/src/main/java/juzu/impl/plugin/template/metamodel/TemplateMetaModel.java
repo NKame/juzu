@@ -62,6 +62,9 @@ public class TemplateMetaModel extends TemplateRefMetaModel {
   public static final MessageCode CANNOT_WRITE_TEMPLATE_SCRIPT = new MessageCode("CANNOT_WRITE_TEMPLATE_SCRIPT", "The template script %1$s cannot be written");
 
   /** . */
+  public static final MessageCode TEMPLATE_CYCLE = new MessageCode("TEMPLATE_CYCLE", "A template cycle was detected");
+
+  /** . */
   public static final MessageCode CONTROLLER_NOT_RESOLVED = new MessageCode("CONTROLLER_NOT_RESOLVED",
       "Controller %1$s not found in template %2$s at (%3$s,%4$s)");
 

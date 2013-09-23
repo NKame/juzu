@@ -86,7 +86,14 @@ class MetaModelProcessContext extends ProcessContext {
       Key<TemplateMetaModel> key = Key.of(template.getAbsolutePath(), TemplateMetaModel.class);
       // It may already be here (in case of double include for instance)
       if (b.getChild(key) == null) {
-        b.addChild(key, a);
+        try {
+          b.addChild(key, a);
+        }
+        catch (IllegalStateException e) {
+          // We have a template cycle and we want to prevent it
+          env.log("Detected a template cycle when registering " + template.getRelativePath() + " -> " + originPath, e);
+          throw TemplateMetaModel.TEMPLATE_CYCLE.failure();
+        }
       }
     }
   }
